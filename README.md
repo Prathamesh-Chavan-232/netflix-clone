@@ -9,6 +9,6 @@
 
 ## Project build orchestrator for React + TypeScript
 
-This React Project is bootstrapped using provides in Vite with HMR and some ESLint rules.
+This React Project is bootstrapped using Vite with HMR and some ESLint rules.
 
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
