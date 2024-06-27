@@ -13,56 +13,150 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+/* Fix Image Sizing */
+img,
+svg,
+video {
+  max-width: 100%;
+  display: block;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+html:focus-within {
+  scroll-behavior: smooth;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+/*
+    Font Sizes -
+    Step 0: 18px → 20px
+    --fs-400: 22.5px → 26.66px
+    --fs-500: 28.125px → 35.5378px
+    --fs-600: 35.1563px → 47.3719px
+    --fs-700: 43.9453px → 63.1467px
+    --fs-800: 54.9316px → 84.1745px
+*/
+
+:root {
+  --ff-base: "Inter", sans-serif;
+  --ff-accent: "Syne", sans-serif;
+
+  --fs-300: clamp(1.125rem, 1.1rem + 0.125vi, 1.25rem);
+  --fs-400: clamp(1.4063rem, 1.3543rem + 0.26vi, 1.6663rem);
+  --fs-500: clamp(1.7578rem, 1.6652rem + 0.4633vi, 2.2211rem);
+  --fs-600: clamp(2.1973rem, 2.0446rem + 0.7635vi, 2.9607rem);
+  --fs-700: clamp(2.7466rem, 2.5066rem + 1.2001vi, 3.9467rem);
+  --fs-800: clamp(3.4332rem, 3.0677rem + 1.8277vi, 5.2609rem);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+    --clr-text: #0c0e13;
+    --clr-background: #eceef3;
+    --clr-primary: #333e5c;
+    --clr-secondary: #8b9cc6;
+    --clr-accent: #415790;
   }
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-text: #eceef3;
+    --clr-background: #0c0e13;
+    --clr-primary: #a3aecc;
+    --clr-secondary: #394a74;
+    --clr-accent: #6f85be;
+  }
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  color: var(--clr-text);
+  background-color: var(--clr-background);
+  font-family: var(--ff-base);
+  font-size: var(--fs-300);
+  line-height: 1.6;
+  --webkit-font-smoothing: antialiased;
+  text-rendering: optimizeSpeed;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--ff-accent);
+  color: var(--clr-text);
+  /* text-wrap: balance; */
+}
+
+h1 {
+  font-size: var(--fs-700);
+  color: var(--clr-primary);
+}
+
+h2 {
+  font-size: var(--fs-600);
+}
+
+h3 {
+  font-size: var(--fs-500);
+}
+
+h4 {
+  font-size: var(--fs-400);
+}
+
+a {
+  color: var(--clr-accent);
+}
+
+::marker {
+  color: var(--clr-accent);
+}
+
+.content-wrapper {
+  --default-padding: 3rem;
+  width: min(80ch, 100% - var(--default-padding, 2rem));
+  margin-inline: auto;
+}
+
+/* Flow Spacing */
+.flow > :where(:not(:first-child)) {
+  margin-top: var(--flow-space, 1em);
+}
+
+/* Flow Spacing for heading tags */
+h1 {
+  --flow-space: 2em;
+}
+
+h2 {
+  --flow-space: 1.5em;
+}
+
+h3 {
+  --flow-space: 1.25em;
+}
+
+
