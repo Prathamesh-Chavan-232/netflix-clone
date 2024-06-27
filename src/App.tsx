@@ -1,10 +1,9 @@
 function App() {
-
-    return (
-        <div>
-            Netflix Clone
-        </div>
-    );
+  return (
+    <div className="px-12">
+      {"Hello World"}
+    </div>
+  );
 }
 
 export default App;
